@@ -17,6 +17,8 @@ app.use(bodyParser.json());
 // importar rutas - la ruta para la mongodb
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
+var eventoRoutes = require('./routes/eventos');
+var busquedaRoutes = require('./routes/busqueda');
 var appRoutes = require('./routes/app');
 
 
@@ -31,8 +33,10 @@ mongoose.connection.openUri('mongodb://localhost:27017/calendarioadm', (err, res
 
 // ruta secundaria, necesario cargarla primero que el principal
 app.use('/usuario', usuarioRoutes);
+app.use('/evento', eventoRoutes);
+app.use('/busqueda', busquedaRoutes);
 app.use('/login', loginRoutes);
-//ruta principal
+//ruta principal - APP.USE siempre debe ser la ultima ruta.
 app.use('/', appRoutes);
 
 
